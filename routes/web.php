@@ -38,6 +38,10 @@ use Inertia\Inertia;
  *
  * Запустить тестовую среду для Unit-тестов
  * php vendor/phpunit/phpunit/phpunit
+ *
+ * Создать свой тест
+ * php artisan make:test Test --unit
+ *
  */
 
 
@@ -67,6 +71,8 @@ Route::middleware('auth')->group(function () { // Все роуты для ко�
         Route::get('/', 'App\Http\Controllers\AdminController@admin_menu')->name('admin_menu');
         Route::get('/emails/list', 'App\Http\Controllers\AdminController@emails_list')->name('emails_list');
         Route::get('/products/list', 'App\Http\Controllers\ProductsController@product_admin')->name('product_admin');
+        Route::get('/tests', 'App\Http\Controllers\AdminController@unit_tests')->name('unit_tests');
+
 
         Route::get('cache_clear', function () {  // Вызывать команды артисана через URL
             Artisan::call('cache:clear');

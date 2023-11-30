@@ -3,5 +3,6 @@
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('emails_list') }}">Сообщения</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('product_admin') }}">Продукты</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('orders.index') }}">Заказы</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('unit_tests') }}">Протестировать</a>
     </nav>
 </div>
