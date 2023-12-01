@@ -21,10 +21,19 @@ class AdminController extends Controller
 
     public function unit_tests(){
 
-        $val = '1000000';
-        $formatter_serves = new FormatterServes($val);
-        $formatted = $formatter_serves->formatted();
+        return view('admin.tests');
+    }
+
+    public function unit_tests_services(Request $request){
+        $value = 0;
+        if ($request->price){
+            $value = $request->price;
+        }
+        $formatter_serves = new FormatterServes($value); // Обращаемся к своему классу
+        $formatted = $formatter_serves->formatted();   // Вызываем его метод
         return view('admin.tests', compact('formatted'));
     }
+
+
 
 }

@@ -14,7 +14,14 @@ class FormatterServes
 
     public function formatted()
     {
-        return $this->value;
+        $val = $this->value;
+        $val = str_replace([' ', '/', '_'], "", $val);
+        if (strpos($val, ',') !== false){
+            $val = str_replace(",", ".", $val);
+        }
+
+        $number = number_format(round($val, 2), 2, ',', ' ');
+        return $number;
     }
 
 

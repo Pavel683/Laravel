@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () { // Все роуты для ко�
         Route::get('/emails/list', 'App\Http\Controllers\AdminController@emails_list')->name('emails_list');
         Route::get('/products/list', 'App\Http\Controllers\ProductsController@product_admin')->name('product_admin');
         Route::get('/tests', 'App\Http\Controllers\AdminController@unit_tests')->name('unit_tests');
+        Route::post('/tests/testing', 'App\Http\Controllers\AdminController@unit_tests_services')->name('unit_tests_services');
 
 
         Route::get('cache_clear', function () {  // Вызывать команды артисана через URL
