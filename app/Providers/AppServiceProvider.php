@@ -36,11 +36,11 @@ class AppServiceProvider extends ServiceProvider
             return app()->environment($env);
         });
 
-        Blade::directive('user', function (){  // Что то очень криво работает!
-            $user_id = Auth::id();
-            $user_fio = User::find($user_id);
-            return $user_fio->fio . ' (' . $user_fio->email . ')';
-        });
+//        Blade::directive('user', function (){  // Что то очень криво работает!
+//            $user_id = Auth::id();
+//            $user_fio = User::find($user_id);
+//            return $user_fio->fio . ' (' . $user_fio->email . ')';
+//        });
 
 
         Product::observe(ProductObserver::class);  // Регистрируем свой обсервер класс привязаный к модели

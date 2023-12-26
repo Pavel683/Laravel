@@ -42,6 +42,8 @@ use Inertia\Inertia;
  * Создать свой тест
  * php artisan make:test Test --unit
  *
+ * Создать фабрику
+ * php artisan make:factory TestFactory --model=Product
  */
 
 

@@ -12,7 +12,7 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition() // Фабрики используются для ато тестов
+    public function definition() // Фабрики используются для автотестов
     {
         return [
             'name' => $this->faker->firstName(),
