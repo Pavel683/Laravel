@@ -1,4 +1,4 @@
-@extends('layout') <!-- Наследуем все от файла 'layout' -->
+@extends('layout', ['user' => isset($user) ? $user : null]) <!-- Наследуем все от файла 'layout' -->
 
 @section('name_title') <!-- Куда вставлять инфу в layout -->
     <title>Главная страница</title>
@@ -18,7 +18,7 @@
     @if(isset($user))
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
             Добрый День
-            {{ $user }}! <br>
+            {{ $user->fio }}! <br>
 
             @env('test')
                 <h1>Тестовый макет, не для продуктивноко сайта!</h1>

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'is_active',
     ];
 
     protected $guarded = [  // Нельзя
@@ -55,6 +56,28 @@ class User extends Authenticatable
     public function places(){                                                    // Прямая зависимость одно из этой таблицы может быть в нескольких в другой
         return $this->hasMany(Place::class, 'user_created_id'); // Как много (Из другой таблицы, где id искать в поле 'user_created_id')
     }
+
+    public function isAdmin(){
+        return $this->is_admin === 1;
+    }
+
+    public function isActive(){
+        return $this->is_active === 1;
+    }
+
+    public function setAdmin(){  // Установить переменную
+        $this->update(['is_admin' => 1]);
+    }
+    public function delAdmin(){  // Установить переменную
+        $this->update(['is_admin' => 0]);
+    }
+    public function setActive(){  // Установить переменную
+        $this->update(['is_active' => 1]);
+    }
+    public function delActive(){  // Установить переменную
+        $this->update(['is_active' => 0]);
+    }
+
 
     public function scopeIsAdmin($query){
         return $query->where('is_admin', 1);

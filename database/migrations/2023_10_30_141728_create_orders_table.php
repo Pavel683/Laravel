@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('seller_id');
             $table->string('telephone');
+            $table->string('email')->unique();
+            $table->integer('product_id');
             $table->timestamps();
             $table->softDeletes();
         });

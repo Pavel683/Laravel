@@ -27,7 +27,7 @@ class MainController extends Controller{
 //        dump($roure);
 //        dump(User::findOrfail(Auth::id())->fio);
         if (Auth::check()){
-            $user = User::findOrfail(Auth::id())->fio;
+            $user = User::findOrfail(Auth::id());
             return view('home', compact('user'));
         }
 

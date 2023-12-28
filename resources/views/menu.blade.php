@@ -12,7 +12,7 @@
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/about">@lang('places.menu.forms')</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/baza">@lang('places.menu.baza')</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('change_locale', __('places.menu.language')) }}">@lang('places.menu.locale')</a>
-        @if(isset(\Illuminate\Support\Facades\Auth::user()->is_admin) && \Illuminate\Support\Facades\Auth::user()->is_admin == 1)
+        @if($isAdmin || (isset(\Illuminate\Support\Facades\Auth::user()->is_admin) && \Illuminate\Support\Facades\Auth::user()->is_admin == 1))
             <a style="color: purple" class="me-3 py-2 link-body-emphasis text-decoration-none" href="/admin">Администрирование</a>
         @endif
     </nav>

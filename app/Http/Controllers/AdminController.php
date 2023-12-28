@@ -34,6 +34,11 @@ class AdminController extends Controller
         return view('admin.tests', compact('formatted'));
     }
 
+    public function user_list_admin(){
+        $users = User::all();
+        return view('admin.user_list', compact('users'));
+    }
+
 
 
 }

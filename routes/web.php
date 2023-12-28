@@ -37,6 +37,7 @@ use Inertia\Inertia;
  * php artisan queue:work
  *
  * Запустить тестовую среду для Unit-тестов
+ * php artisan test --filter OrderTest::testOrderCreate
  * php vendor/phpunit/phpunit/phpunit
  *
  * Создать свой тест
@@ -44,6 +45,9 @@ use Inertia\Inertia;
  *
  * Создать фабрику
  * php artisan make:factory TestFactory --model=Product
+ *
+ * Заполнить определенную базу сидом
+ * php artisan db:seed --class=DatabaseSeeder --env=testing
  */
 
 
@@ -63,24 +67,33 @@ use Inertia\Inertia;
 //
 //require __DIR__.'/auth.php';
 
+
 Route::get('locale/{locale}', 'App\Http\Controllers\SystemsController@locale')->name('change_locale');
 
 Route::get('/', 'App\Http\Controllers\MainController@home')->name('home'); //->middleware('add_hash'); // Зарегестрировали middleware в \app\Http\Kernel.php
 
 Route::middleware('auth')->group(function () { // Все роуты для которых необходима авторизация
 
-    Route::prefix('admin')->group(function () {
-        Route::get('/', 'App\Http\Controllers\AdminController@admin_menu')->name('admin_menu');
-        Route::get('/emails/list', 'App\Http\Controllers\AdminController@emails_list')->name('emails_list');
-        Route::get('/products/list', 'App\Http\Controllers\ProductsController@product_admin')->name('product_admin');
-        Route::get('/tests', 'App\Http\Controllers\AdminController@unit_tests')->name('unit_tests');
-        Route::post('/tests/testing', 'App\Http\Controllers\AdminController@unit_tests_services')->name('unit_tests_services');
+    Route::middleware('is_admin')->group(function (){
+        Route::prefix('admin')->group(function () {
+            Route::get('/', 'App\Http\Controllers\AdminController@admin_menu')->name('admin_menu');
+            Route::get('/emails/list', 'App\Http\Controllers\AdminController@emails_list')->name('emails_list');
+            Route::get('/products/list', 'App\Http\Controllers\ProductsController@product_admin')->name('product_admin');
+            Route::get('/tests', 'App\Http\Controllers\AdminController@unit_tests')->name('unit_tests');
+            Route::post('/tests/testing', 'App\Http\Controllers\AdminController@unit_tests_services')->name('unit_tests_services');
+            Route::get('/users', 'App\Http\Controllers\AdminController@user_list_admin')->name('user_list_admin');
+
+            Route::get('/set/admin', 'App\Http\Controllers\UserController@setAdmin')->name('setAdmin');
+            Route::get('/set/active', 'App\Http\Controllers\UserController@setActive')->name('setActive');
+            Route::get('/del/admin', 'App\Http\Controllers\UserController@delAdmin')->name('delAdmin');
+            Route::get('/del/active', 'App\Http\Controllers\UserController@delActive')->name('delActive');
 
 
-        Route::get('cache_clear', function () {  // Вызывать команды артисана через URL
-            Artisan::call('cache:clear');
+            Route::get('cache_clear', function () {  // Вызывать команды артисана через URL
+                Artisan::call('cache:clear');
+            });
+
         });
-
     });
     Route::resource('emails', '\App\Http\Controllers\EmailsController');
 

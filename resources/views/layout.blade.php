@@ -40,7 +40,8 @@
 
     @endif
     <div class=" min-h-screen bg-gray-100 dark:bg-gray-900 py-4 sm:pt-0">
-        @include('menu', array(1,2)) <!-- Добавить кусок раздела -->
+
+        @include('menu', ['isAdmin' => isset($user) && $user->isAdmin() ? $user->isAdmin() : false]) <!-- Добавить кусок раздела -->
 
         @yield('main_content') <!-- Вставить инфу с других html файлов -->
 
