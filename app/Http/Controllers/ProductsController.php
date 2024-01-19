@@ -93,7 +93,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product)  // Тут мы передаем сразу модель Product в запрос
     {
 //        event(new ProductEvent($product)); // Евент который при активации будет вызывать листнеры и передавать объект
         Log::channel('product_deleted')->notice(json_decode(json_encode($product), true)); // Свой канал логов, в свой файл

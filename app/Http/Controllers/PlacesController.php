@@ -38,7 +38,7 @@ class PlacesController extends Controller
             }elseif (isset($user_id) && !isset($type_id)){
                 $places = Place::with('type')->find($filter_user_place);
             }elseif (!isset($user_id) && isset($type_id)){
-                $places = Place::with('type')->where('type_id', '=', $type_id)->get();
+                $places = Place::with('type')->where('type_id', '=', $type_id)->get(); // ->toSQL() - просмотреть запрос
             }else{
                 $places = Place::with('type')->get();
             }
@@ -93,7 +93,8 @@ class PlacesController extends Controller
          */
 //        $images = Storage::allFiles('public/'.$place_id); // Получение файлов из объекта Storage
         $documents = $place->documents; // Получение файлов с помощью метода
-
+                                        // Если методы доя моделей пишем как documents то получаем коллекцию которую можно выводить
+                                        // Если как documents() то как конструктор запросов и можно дальше вызывать соответствующие методы
         /**
          * Получаем рейтинг
          */

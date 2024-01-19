@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasMany(Place::class, 'user_created_id'); // Как много (Из другой таблицы, где id искать в поле 'user_created_id')
     }
 
+    public function orders(){
+        return $this->hasMany(Order::class, 'seller_id');
+    }
+
+
     public function isAdmin(){
         return $this->is_admin === 1;
     }

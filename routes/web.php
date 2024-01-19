@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PlacesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,9 @@ use Inertia\Inertia;
  * Создать модель с миграцией
  * php artisan make:model Email --migration
  *
+ * Сделать дополнение к уже существующей базе со сделанными миграциями
+ * php artisan make:migration alter_emails_table --table=emails
+ *
  * Провести миграции
  * php artisan migrate
  *
@@ -44,10 +49,10 @@ use Inertia\Inertia;
  * php artisan make:test Test --unit
  *
  * Создать фабрику
- * php artisan make:factory TestFactory --model=Product
+ * php artisan make:factory ProductFactory --model=Product
  *
  * Заполнить определенную базу сидом
- * php artisan db:seed --class=DatabaseSeeder --env=testing
+ * php artisan db:seed --class=DatabaseSeeder --env=testing  или можно использовать флаг --seed
  */
 
 
@@ -76,12 +81,12 @@ Route::middleware('auth')->group(function () { // Все роуты для ко�
 
     Route::middleware('is_admin')->group(function (){
         Route::prefix('admin')->group(function () {
-            Route::get('/', 'App\Http\Controllers\AdminController@admin_menu')->name('admin_menu');
-            Route::get('/emails/list', 'App\Http\Controllers\AdminController@emails_list')->name('emails_list');
+            Route::get('/', [AdminController::class,'admin_menu'])->name('admin_menu');  // Правильный способ представления контроллера!
+            Route::get('/emails/list', [AdminController::class,'emails_list'])->name('emails_list');
             Route::get('/products/list', 'App\Http\Controllers\ProductsController@product_admin')->name('product_admin');
-            Route::get('/tests', 'App\Http\Controllers\AdminController@unit_tests')->name('unit_tests');
-            Route::post('/tests/testing', 'App\Http\Controllers\AdminController@unit_tests_services')->name('unit_tests_services');
-            Route::get('/users', 'App\Http\Controllers\AdminController@user_list_admin')->name('user_list_admin');
+            Route::get('/tests', [AdminController::class,'unit_tests'])->name('unit_tests');
+            Route::post('/tests/testing', [AdminController::class,'unit_tests_services'])->name('unit_tests_services');
+            Route::get('/users', [AdminController::class,'user_list_admin'])->name('user_list_admin');
 
             Route::get('/set/admin', 'App\Http\Controllers\UserController@setAdmin')->name('setAdmin');
             Route::get('/set/active', 'App\Http\Controllers\UserController@setActive')->name('setActive');
@@ -98,7 +103,7 @@ Route::middleware('auth')->group(function () { // Все роуты для ко�
     Route::resource('emails', '\App\Http\Controllers\EmailsController');
 
     Route::prefix('places')->group(function () {
-        Route::get('/', 'App\Http\Controllers\PlacesController@places')->name('places');
+        Route::get('/', [PlacesController::class,'places'])->name('places');
         Route::get('/create', 'App\Http\Controllers\PlacesController@create')->name('create_place');
         Route::post('/form', 'App\Http\Controllers\PlacesController@form')->name('check_form')->middleware('check_place');
         Route::get('/place_{id}', 'App\Http\Controllers\PlacesController@detail')->name('place_detail');

@@ -49,4 +49,23 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function admin()  // Задает постоянные значения
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_admin' => 1,
+            ];
+        });
+    }
+
+    public function active()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_active' => 1,
+            ];
+        });
+    }
+
 }

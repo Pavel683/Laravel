@@ -20,10 +20,13 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            "seller_id" => User::factory()->create()->id,
+//            "seller_id" => User::factory()->create()->id,
             "telephone" => $this->faker->phoneNumber(),
             "email" => User::factory()->create()->email,
             "product_id" => Product::factory()->create()->id,
+//            "product_id" => function (){
+//                return Product::inRandomOrder()->get();  // Если нужно создавать из определенного и существующего списка
+//            },
 
         ];
     }
