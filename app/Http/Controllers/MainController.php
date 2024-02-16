@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Debugbar;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserRequest;
@@ -20,6 +21,21 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller{
+
+
+    public function main()
+    {
+
+        return view('main.main');
+
+    }
+
+
+    public function cache_clear()
+    {
+        Artisan::call('clear:all');
+        return redirect()->back();
+    }
 
     public function home()
     {

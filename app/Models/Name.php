@@ -19,7 +19,7 @@ class Name extends Model
 
     ];
 
-    public function scopeIsJon($query){  // Самописные облегчающие функции
+public function scopeIsJon($query){  // Самописные облегчающие функции
         return $query->where('fist_name', 'Jon');
     }
 

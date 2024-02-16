@@ -5,15 +5,15 @@
     </a>
 
     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">@lang('places.menu.main')</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/user_dashboard">@lang('places.menu.authorise')</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/places">@lang('places.menu.places')</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('home') }}">@lang('places.menu.main')</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('profile') }}">@lang('places.menu.authorise')</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('places') }}">@lang('places.menu.places')</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('product_list') }}">Магазин</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/about">@lang('places.menu.forms')</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/baza">@lang('places.menu.baza')</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('forms') }}">@lang('places.menu.forms')</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('baza') }}">@lang('places.menu.baza')</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('change_locale', __('places.menu.language')) }}">@lang('places.menu.locale')</a>
         @if($isAdmin || (isset(\Illuminate\Support\Facades\Auth::user()->is_admin) && \Illuminate\Support\Facades\Auth::user()->is_admin == 1))
-            <a style="color: purple" class="me-3 py-2 link-body-emphasis text-decoration-none" href="/admin">Администрирование</a>
+            <a style="color: purple" class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('admin_menu') }}">Администрирование</a>
         @endif
     </nav>
 </div>

@@ -1,0 +1,136 @@
+.login-container {
+    background-color: #e6eff4; /* #f1f6f9; #e6eff4 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: scroll;
+}
+
+@media (prefers-color-scheme: dark) {
+    .login-container {
+        background-color: #e6eff4; /* #f1f6f9; #e6eff4 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+}
+
+.login-form {
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    text-align: center;
+}
+
+.login-text{
+    display: flex;
+    left: 0;
+}
+
+.login-btn-small {
+    color: rgba(76, 102, 133, 0.5);
+    height: 24px;
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 5px 12px 4px 12px;
+}
+.login-btn
+{
+    height: 38px;
+    border-radius: 17px;
+    font-size: 15px;
+    padding: 1px 55px 1px 55px;
+    margin: 10px;
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.link-menu
+{
+    font-size: 300px;
+}
+
+.notes-select
+{
+    width: 120px;
+    background-color: #cccaca;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.status-1, .status-4, .status-5
+{
+    color: red;
+}
+
+.status-3
+{
+    color: #1e7e34;
+}
+
+.status-2, .status-6
+{
+    color: #e0a800;
+}
+
+.items-list
+{
+    height: 100%;
+}
+
+.item-list
+{
+    max-height: 0;
+    overflow: hidden;
+    /*transition: max-height 0.5s cubic-bezier(1,0,.53,.89);*/
+    transition: max-height 0.5s cubic-bezier(.18,.89,.32,1.28);
+}
+
+.item-list.open
+{
+    max-height: 5000px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.gallery img {
+    flex: 4 0 100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    margin-right: 5px
+}
+
+.multiselect {
+    width: 200px;
+    overflow: auto;
+}
+.multiselect-options {
+    display: none;
+    /*position: absolute;*/
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    bottom:10%;
+}
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.little-btn {
+    padding: 3px;
+    height: 30px;
+    margin: 3px
+}
+

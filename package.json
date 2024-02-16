@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "jquery": "^3.7.0",
+        "owl.carousel": "^2.3.4",
         "vue-loader": "^17.0.1"
     }
 }

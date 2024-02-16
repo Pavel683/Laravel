@@ -32,9 +32,9 @@
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                    @endif
+{{--                    @if (Route::has('register'))--}}
+{{--                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>--}}
+{{--                    @endif--}}
                 @endauth
             </div>
 
@@ -51,7 +51,7 @@
             Все права защищены (c)
             {{--            @include('menu')--}}
         </div>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/users">Пользователи</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('users_list') }}">Пользователи</a>
         @endcomponent
     </div>
     </div>
