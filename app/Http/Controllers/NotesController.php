@@ -129,6 +129,16 @@ class NotesController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $documents = $note->storage_documents;
+        if ($documents){
+            foreach ($documents as $document){
+                Storage::disk('public')->delete($document->url);
+                $document->delete();
+            }
+            $note->storage_documents()->detach();  // Удаление записей в связующих таблицах
+        }
+        $note->delete();
+
+        return redirect(route('notes.index'));
     }
 }

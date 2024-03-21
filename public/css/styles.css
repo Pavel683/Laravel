@@ -87,7 +87,7 @@
     max-height: 0;
     overflow: hidden;
     /*transition: max-height 0.5s cubic-bezier(1,0,.53,.89);*/
-    transition: max-height 0.5s cubic-bezier(.18,.89,.32,1.28);
+    /*transition: max-height 0.5s cubic-bezier(.18,.89,.32,1.28);*/
 }
 
 .item-list.open
@@ -133,4 +133,27 @@ input[type="checkbox"] {
     height: 30px;
     margin: 3px
 }
+
+
+.img-list-mobile {
+    width: 25vw;
+    height: 25vw;
+}
+
+.img-list-desktop {
+    width: 15vw;
+    height: 15vw;
+}
+
+.ingredient-box {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ingredient-box.desktop {
+    width: 70vw;
+}
+
 

@@ -8,6 +8,8 @@ $(document).ready(function getDeviceType() {
     } else {
         $('#desktop').removeClass("hidden");
         $('#mobile').remove();
+        $('.img_list').addClass('img-list-desktop').removeClass('img-list-mobile');
+        $('.ingredient-box').addClass('desktop');
     }
 });
 

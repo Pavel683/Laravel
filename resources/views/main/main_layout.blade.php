@@ -45,6 +45,9 @@
                 <span class="fs-4">SuperSait</span>
             </a>
         </div>
+        <a class="text-decoration-none" style="margin-right: 20px; margin-left: 20px" href="{{ route('cocktails.index') }}">Коктельчики</a>
+        |
+        <a class="text-decoration-none" style="margin-right: 20px; margin-left: 20px" href="{{ route('ingredients.index') }}">Ингредиенты</a>
 
 <div style="margin: 15px;" >
     @yield('main_content') <!-- Вставить инфу с других html файлов -->

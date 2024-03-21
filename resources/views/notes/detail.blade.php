@@ -1,7 +1,7 @@
 @extends('main.main_layout') <!-- Наследуем все от файла 'layout' -->
 
 @section('name_title') <!-- Куда вставлять инфу в layout -->
-<title>Добавить ссылку</title>
+<title>Заметка</title>
 @endsection
 
 @section('main_content') <!-- Куда вставлять инфу в layout -->
@@ -60,6 +60,11 @@
         <div style="margin-top: 20px">
             <button type="submit" class="btn btn-success">Обновить</button>
         </div>
+    </form>
+    <form method="post" action="{{ route('notes.destroy', compact('note')) }}">
+        @csrf
+        @method('DELETE')
+        <div><button onclick="return confirm('Удалить заметку?');" style="margin-top: 15px" value="del" name="del" type="submit" class="btn btn-danger">Удалить</button></div>
     </form>
 </div>
 

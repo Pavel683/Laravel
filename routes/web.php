@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CocktailPropertiesController;
 use App\Http\Controllers\CocktailsController;
+use App\Http\Controllers\IngredientsController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\PlacesController;
@@ -76,10 +77,16 @@ Route::middleware('auth')->group(function () { // Все роуты для ко�
     Route::resource('cocktails', CocktailsController::class);
     Route::post('cocktails/add_properties',[CocktailPropertiesController::class, 'add_properties'])->name('add_properties');
 
+    Route::resource('ingredients', IngredientsController::class);
 
     Route::resource('links', LinksController::class);
     Route::resource('notes', NotesController::class);
     Route::get('/download/{id}', [StorageDocumentsController::class, 'download'])->name('download');
+
+
+    Route::get('vue', function (){
+       return view('vue.testing');
+    })->name('vue');
 
 
     Route::prefix('testing_course')->group(function () {

@@ -8,6 +8,7 @@
 <h1>Коктельчики</h1>
 @include('cocktails_menu.menu')
 <hr>
+@if(count($cocktails))
     @foreach($cocktails as $cocktail)
         <div id="main" style="padding: 15px; margin: 10px;">
             <a style="color: #1b1e21; display: flex" class="text-decoration-none" href="{{ route('cocktails_menu_detail', $cocktail->id) }}">
@@ -30,5 +31,10 @@
         </div>
         <hr>
     @endforeach
-
+@else
+    <div id="main" style="padding: 15px; margin: 10px;">
+        <h1>Нет такого! Иди нахуй!</h1>
+    </div>
+    <hr>
+@endif
 @endsection

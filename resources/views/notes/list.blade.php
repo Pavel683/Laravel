@@ -1,7 +1,7 @@
 @extends('main.main_layout') <!-- Наследуем все от файла 'layout' -->
 
 @section('name_title') <!-- Куда вставлять инфу в layout -->
-<title>Ссылки</title>
+<title>Заметки</title>
 @endsection
 
 @section('main_content') <!-- Куда вставлять инфу в layout -->

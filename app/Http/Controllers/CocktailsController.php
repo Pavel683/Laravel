@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cocktail;
 use App\Models\CocktailProperty;
+use App\Services\ValidIngredientsServes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -47,20 +49,28 @@ class CocktailsController extends Controller
                     $filter_cocktails_valid_list[] = $key;
                 }
             }
+            if (empty($filter_cocktails_valid_list)) {
+                $filter_cocktails_valid_list[] = 0;
+            }
         }
 
         $cocktails = new Cocktail();
+        if ($search){
+            $cocktails = $cocktails->where(function (Builder $query) use ($search){
+                $query->where('name', 'like', '%'.$search.'%')->orWhere('ingredients', 'like', '%'.$search.'%');
+            });
+        }
+
         if ($in_menu) {
             $cocktails = $cocktails->where('in_menu', 1);
         }
-        if ($search){
-            $cocktails = $cocktails->where('name', 'like', $search.'%');
-        }
+
         if ($filter_cocktails_valid_list){
-            $cocktails = $cocktails->find($filter_cocktails_valid_list);
-        }else{
-            $cocktails = $cocktails->get();
+            $cocktails = $cocktails->whereIn('id', $filter_cocktails_valid_list);
         }
+
+        $cocktails = $cocktails->get();
+
 
 
         $properties = CocktailProperty::get();
@@ -95,11 +105,16 @@ class CocktailsController extends Controller
                     $filter_cocktails_valid_list[] = $key;
                 }
             }
+            if (empty($filter_cocktails_valid_list)) {
+                $filter_cocktails_valid_list[] = 0;
+            }
         }
 
         $cocktails = new Cocktail();
         if ($search){
-            $cocktails = $cocktails->where('name', 'like', $search.'%');
+            $cocktails = $cocktails->where(function (Builder $query) use ($search){
+                $query->where('name', 'like', '%'.$search.'%')->orWhere('ingredients', 'like', '%'.$search.'%');
+            });
         }
         if ($filter_cocktails_valid_list){
             $cocktails = $cocktails->where('in_menu', 1)->find($filter_cocktails_valid_list);
@@ -155,7 +170,11 @@ class CocktailsController extends Controller
         $properties = CocktailProperty::get();
         $images = $cocktail->storage_documents;
         $binding_properties = $cocktail->cocktail_properties()->orderBy('cocktail_property_id')->get();
-        return view('cocktails.detail', compact('cocktail', 'images', 'properties', 'binding_properties'));
+
+        $ingredient_list = new ValidIngredientsServes($cocktail->ingredients);
+        $ingredient_list = $ingredient_list->formatted();
+
+        return view('cocktails.detail', compact('cocktail', 'images', 'properties', 'binding_properties', 'ingredient_list'));
     }
 
     public function cocktails_menu_detail($cocktail_id)

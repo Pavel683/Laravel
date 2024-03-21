@@ -37,7 +37,7 @@
 <br>
     <div>
         <pre style="white-space: pre-line;font-family: Calibri,sans-serif;font-size: 16px " id="ingredients">
-            {{ $cocktail->ingredients }}
+            {!! $ingredient_list !!}
         </pre>
         <p style="white-space: pre-line;">
             {{ $cocktail->description }}
